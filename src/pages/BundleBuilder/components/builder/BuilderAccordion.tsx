@@ -46,9 +46,11 @@ export function BuilderAccordion() {
             }
           >
             {cards.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3">
+              // ≤lg: vertical cards wrap (auto-fill ~150px columns).
+              // ≥lg: switch to the 2-column horizontal-card layout.
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] items-stretch gap-3 lg:grid-cols-2">
                 {cards.map((p, idx) => {
-                  // A trailing odd card spans both columns and centers itself.
+                  // ≥lg only: a trailing odd card spans both columns, centered.
                   const isLoneLast =
                     idx === cards.length - 1 && cards.length % 2 === 1
                   return (
@@ -56,7 +58,7 @@ export function BuilderAccordion() {
                       key={p.id}
                       className={
                         isLoneLast
-                          ? 'col-span-2 mx-auto w-[calc(50%-0.375rem)]'
+                          ? 'lg:col-span-2 lg:mx-auto lg:w-[calc(50%-0.375rem)]'
                           : undefined
                       }
                     >

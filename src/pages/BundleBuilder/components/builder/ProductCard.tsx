@@ -33,7 +33,9 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       className={cn(
-        'relative flex h-full gap-3 rounded-card border-2 bg-bg p-3 pr-6 transition-colors',
+        'relative flex h-full flex-col gap-3 rounded-card border-2 bg-bg p-3 transition-colors',
+        // ≥lg: horizontal layout (image beside content) with extra right padding.
+        'lg:flex-row lg:pr-6',
         // Borderless until selected; selected shows the 2px primary border.
         selected ? 'border-primary-border' : 'border-transparent',
       )}
@@ -42,18 +44,18 @@ export function ProductCard({ product }: ProductCardProps) {
         <Badge className="absolute left-3 top-3 z-10">{product.badge}</Badge>
       )}
 
-      {/* Image column — flexes with the card width */}
+      {/* Image — on top (vertical) by default; beside content at ≥lg. */}
       <ProductImage
         src={product.image}
         alt={product.title}
-        className="aspect-square w-[30%] max-w-28 shrink-0 self-center"
+        className="aspect-square w-full shrink-0 self-center lg:w-[30%] lg:max-w-28"
       />
 
-      {/* Content column — centered against the image when there are no variants */}
+      {/* Content column — centered against the image (horizontal mode, no variants) */}
       <div
         className={cn(
           'flex min-w-0 flex-1 flex-col',
-          !hasVariants && 'justify-center',
+          !hasVariants && 'lg:justify-center',
         )}
       >
         <h3 className="text-sm font-bold text-text">{product.title}</h3>
