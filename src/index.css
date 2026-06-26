@@ -15,6 +15,7 @@
   --color-primary-hover: #4327b3; /* darkened primary for hover */
   --color-primary-fg: #ffffff; /* white on any primary surface (button/badge/icon) */
   --color-primary-soft: #edf4ff; /* soft tint for hovers / guarantee box */
+  --color-primary-border: #4e2fd2b2; /* selected card border (primary @ ~70%) */
 
   /* Surfaces */
   --color-bg: #ffffff; /* page, cards, collapsed steps, steppers */
@@ -26,13 +27,19 @@
   --color-border: #e6e6ec;
   --color-border-strong: #d6d6df;
   --color-border-panel: #ced6de; /* dividers inside the tinted review panel */
+  --color-border-step: #1f1f1f33; /* accordion step dividers (#1F1F1F, light hairline) */
   --color-border-disabled: #e6ebf0; /* disabled stepper border (step context) */
 
   /* Disabled control fill */
   --color-control-disabled: #f1f1f2; /* disabled stepper fill (review context) */
 
+  /* Variant chip "in cart" highlight (quantity > 0) */
+  --color-instock: #0aa288; /* border */
+  --color-instock-bg: #1df0bb0a; /* faint teal fill */
+
   /* Text — general, reusable greys */
   --color-text: #0b0d10;
+  --color-text-strong: #1f1f1f; /* solid near-black (variant labels, etc.) */
   --color-text-muted: #1f1f1fbf; /* #1F1F1F @ 75% alpha */
   --color-text-faint: #484848;
   --color-text-soft: #575757;
@@ -40,12 +47,13 @@
   --color-text-mute2: #a8b2bd; /* category subheadings */
 
   /* Semantic accents — general */
+  --color-link: #0000ee; /* inline hyperlinks (Learn More) */
   --color-sale: #d8392b; /* red sale / strike-through accent */
   --color-success: #0aa288; /* FREE / savings positive */
 
   /* Radii */
   --radius-card: 0.875rem; /* 14px product card */
-  --radius-panel: 1rem; /* 16px review panel */
+  --radius-panel: 0.625rem; /* 10px review panel + accordion steps */
   --radius-control: 0.5rem; /* steppers, chips */
   --radius-pill: 9999px;
 

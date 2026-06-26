@@ -24,6 +24,8 @@ interface PriceProps {
 //   sm (review) = 14px, md (card) = 16px, lg = 20px.
 const ACTIVE_SIZE = { sm: 'text-sm', md: 'text-base', lg: 'text-xl' }
 const COMPARE_SIZE = { sm: 'text-sm', md: 'text-base', lg: 'text-lg' }
+// When there's no discount, the lone active price is bumped one step up.
+const ACTIVE_SIZE_SOLO = { sm: 'text-base', md: 'text-lg', lg: 'text-2xl' }
 
 /** active + compare text color per context (general tokens, reused). */
 const COLORS: Record<PriceContext, { active: string; compare: string }> = {
@@ -49,7 +51,7 @@ export function Price({
   const compareEl = showCompare && (
     <span
       className={cn(
-        'font-medium line-through',
+        'font-normal line-through',
         colors.compare,
         COMPARE_SIZE[size],
       )}
@@ -59,12 +61,13 @@ export function Price({
     </span>
   )
 
+  const activeSize = showCompare ? ACTIVE_SIZE[size] : ACTIVE_SIZE_SOLO[size]
   const activeEl = (
     <span
       className={cn(
-        'font-bold',
+        'font-normal',
         isFree ? 'text-primary' : colors.active,
-        ACTIVE_SIZE[size],
+        activeSize,
       )}
     >
       {isFree ? 'FREE' : `${formatPrice(price)}${suffix}`}

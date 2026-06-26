@@ -33,61 +33,78 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       className={cn(
-        'relative flex flex-col rounded-card bg-bg p-3 transition-colors',
-        // Borderless until selected; selected shows the primary border.
-        selected ? 'border border-primary' : 'border border-transparent',
+        'relative flex h-full gap-3 rounded-card border-2 bg-bg p-3 pr-6 transition-colors',
+        // Borderless until selected; selected shows the 2px primary border.
+        selected ? 'border-primary-border' : 'border-transparent',
       )}
     >
       {product.badge && (
         <Badge className="absolute left-3 top-3 z-10">{product.badge}</Badge>
       )}
 
+      {/* Image column — flexes with the card width */}
       <ProductImage
         src={product.image}
         alt={product.title}
-        className="mb-3 aspect-square w-full"
+        className="aspect-square w-[30%] max-w-28 shrink-0 self-center"
       />
 
-      <h3 className="text-sm font-bold text-text">{product.title}</h3>
-      {product.description && (
-        <p className="mt-1 text-xs leading-snug text-text-muted">
-          {product.description}{' '}
-          {product.learnMoreUrl && (
-            <a
-              href={product.learnMoreUrl}
-              className="font-semibold text-primary hover:underline"
-            >
-              Learn More
-            </a>
-          )}
-        </p>
-      )}
+      {/* Content column — centered against the image when there are no variants */}
+      <div
+        className={cn(
+          'flex min-w-0 flex-1 flex-col',
+          !hasVariants && 'justify-center',
+        )}
+      >
+        <h3 className="text-sm font-bold text-text">{product.title}</h3>
+        {product.description && (
+          <p className="mt-1 text-xs leading-snug text-text-muted">
+            {product.description}{' '}
+            {product.learnMoreUrl && (
+              <a
+                href={product.learnMoreUrl}
+                className="whitespace-nowrap text-xs font-medium text-link underline"
+              >
+                Learn More
+              </a>
+            )}
+          </p>
+        )}
 
-      {hasVariants && (
-        <div className="mt-3">
-          <VariantSelector
-            variants={product.variants!}
-            activeVariantId={activeVariantId}
-            onSelect={(id) => setActiveVariant(product.id, id)}
+        {hasVariants && (
+          <div className="mt-2">
+            <VariantSelector
+              variants={product.variants!}
+              activeVariantId={activeVariantId}
+              quantityOf={(variantId) => getQuantity(product.id, variantId)}
+              onSelect={(id) => setActiveVariant(product.id, id)}
+            />
+          </div>
+        )}
+
+        <div
+          className={cn(
+            'flex items-center justify-between gap-2 pt-2',
+            // Bottom-pin only when variants push the row down; otherwise let
+            // the counter sit right under the description (no big gap).
+            hasVariants && 'mt-auto',
+          )}
+        >
+          <QuantityStepper
+            value={quantity}
+            onChange={(q) => setQuantity(product.id, activeVariantId, q)}
+            size="sm"
+            aria-label={`${product.title} quantity`}
+          />
+          <Price
+            price={product.price}
+            compareAt={product.compareAt}
+            unit={product.unit}
+            size="md"
+            layout="stacked"
+            context="card"
           />
         </div>
-      )}
-
-      <div className="mt-auto flex items-end justify-between gap-2 pt-3">
-        <QuantityStepper
-          value={quantity}
-          onChange={(q) => setQuantity(product.id, activeVariantId, q)}
-          size="sm"
-          aria-label={`${product.title} quantity`}
-        />
-        <Price
-          price={product.price}
-          compareAt={product.compareAt}
-          unit={product.unit}
-          size="md"
-          layout="stacked"
-          context="card"
-        />
       </div>
     </div>
   )

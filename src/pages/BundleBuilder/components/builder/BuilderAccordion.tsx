@@ -24,7 +24,7 @@ export function BuilderAccordion() {
   const total = steps.length
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-1">
       {steps.map((step, i) => {
         const open = openStep === step.id
         const cards = cardsForStep(catalog.products, step.id)
@@ -47,10 +47,24 @@ export function BuilderAccordion() {
             }
           >
             {cards.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {cards.map((p) => (
-                  <ProductCard key={p.id} product={p} />
-                ))}
+              <div className="grid grid-cols-2 gap-3">
+                {cards.map((p, idx) => {
+                  // A trailing odd card spans both columns and centers itself.
+                  const isLoneLast =
+                    idx === cards.length - 1 && cards.length % 2 === 1
+                  return (
+                    <div
+                      key={p.id}
+                      className={
+                        isLoneLast
+                          ? 'col-span-2 mx-auto w-[calc(50%-0.375rem)]'
+                          : undefined
+                      }
+                    >
+                      <ProductCard product={p} />
+                    </div>
+                  )
+                })}
               </div>
             ) : (
               <p className="rounded-control bg-surface-muted px-4 py-6 text-center text-sm text-text-muted">

@@ -1,5 +1,6 @@
 import { Icon } from '../../../../components/Icon/Icon'
 import type { IconName } from '../../../../components/Icon/Icon'
+import { CaretIcon } from '../../../../assets/icons/CaretIcon'
 import { cn } from '../../../../lib/cn'
 
 interface StepHeaderProps {
@@ -25,25 +26,28 @@ export function StepHeader({
   selectedCount,
 }: StepHeaderProps) {
   return (
-    <span className="flex w-full items-center gap-3">
-      <Icon name={icon} className="h-6 w-6 shrink-0 text-text" />
-      <span className="flex flex-col">
-        <span
-          className={cn(
-            'font-semibold uppercase tracking-wide text-text-faint',
-            open ? 'text-[0.75rem]' : 'text-[0.625rem]',
-          )}
-        >
-          Step {index} of {total}
-        </span>
-        <span className="text-[1.375rem] font-semibold text-text">{title}</span>
+    <span className="flex w-full flex-col">
+      {/* Eyebrow */}
+      <span
+        className={cn(
+          'font-semibold uppercase tracking-wide text-text-faint',
+          open ? 'text-[0.75rem]' : 'text-[0.625rem]',
+        )}
+      >
+        Step {index} of {total}
       </span>
-      <span className="ml-auto flex items-center gap-2 text-sm font-semibold text-primary">
-        {open && selectedCount > 0 && <span>{selectedCount} selected</span>}
-        <Icon
-          name={open ? 'chevron-up' : 'chevron-down'}
-          className="h-5 w-5 text-text-muted"
-        />
+
+      {/* Divider under the eyebrow — breaks out of the header's px-5 padding */}
+      <span className="mt-1.5 mb-3 -mx-5 block border-t-[0.5px] border-border-step" />
+
+      {/* Title row: icon + title (left), selected + caret (right) */}
+      <span className="flex w-full items-center gap-3">
+        <Icon name={icon} className="h-6 w-6 shrink-0 text-text" />
+        <span className="text-[1.375rem] font-semibold text-text">{title}</span>
+        <span className="ml-auto flex items-center gap-2 text-sm font-semibold text-primary">
+          {open && selectedCount > 0 && <span>{selectedCount} selected</span>}
+          <CaretIcon open={open} />
+        </span>
       </span>
     </span>
   )

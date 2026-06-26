@@ -24,9 +24,12 @@ export function AccordionItem({
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-panel border border-border transition-colors',
-        // Expanded step takes the tinted panel background; collapsed stays white.
-        open ? 'bg-panel' : 'bg-bg',
+        'overflow-hidden transition-colors',
+        // Expanded: tinted rounded panel. Collapsed: plain white with a
+        // hairline below the section (separates it from the next step).
+        open
+          ? 'rounded-panel bg-panel'
+          : 'border-b-[0.5px] border-border-step bg-bg',
         className,
       )}
     >
@@ -34,7 +37,7 @@ export function AccordionItem({
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="flex w-full items-center gap-3 px-5 py-4 text-left"
+        className="block w-full px-5 py-4 text-left"
       >
         {header}
       </button>

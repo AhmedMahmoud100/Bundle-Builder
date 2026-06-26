@@ -8,8 +8,10 @@ export type Category = 'cameras' | 'sensors' | 'accessories' | 'plan'
 export interface Variant {
   id: string
   label: string
-  /** Placeholder swatch color (hex) until real swatch images are provided. */
-  swatch: string
+  /** 22×22 swatch thumbnail image shown inside the chip. */
+  thumb?: string
+  /** Fallback swatch color (hex) used when no thumb image is set. */
+  swatch?: string
 }
 
 export interface Product {
