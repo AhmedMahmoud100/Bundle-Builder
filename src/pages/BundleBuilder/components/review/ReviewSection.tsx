@@ -16,11 +16,11 @@ const TITLES: Record<Category, string> = {
 /** A category group: subheading + its review lines. */
 export function ReviewSection({ category, lines }: ReviewSectionProps) {
   return (
-    <section>
+    <section className="border-b border-border-panel pb-4">
       <h3 className="mb-1 text-xs font-normal uppercase tracking-wide text-text-mute2">
         {TITLES[category]}
       </h3>
-      <div className="divide-y divide-border">
+      <div>
         {lines.map((line) => (
           <ReviewLine key={line.key} line={line} />
         ))}

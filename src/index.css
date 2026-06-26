@@ -19,11 +19,17 @@
   /* Surfaces */
   --color-bg: #ffffff; /* page, cards, collapsed steps, steppers */
   --color-panel: #edf4ff; /* review panel + expanded accordion step */
+  --color-control: #f0f4f7; /* stepper +/- button squares */
   --color-surface-muted: #f7f7fa; /* hover fills, image placeholders */
 
   /* Borders */
   --color-border: #e6e6ec;
   --color-border-strong: #d6d6df;
+  --color-border-panel: #ced6de; /* dividers inside the tinted review panel */
+  --color-border-disabled: #e6ebf0; /* disabled stepper border (step context) */
+
+  /* Disabled control fill */
+  --color-control-disabled: #f1f1f2; /* disabled stepper fill (review context) */
 
   /* Text — general, reusable greys */
   --color-text: #0b0d10;
@@ -80,4 +86,13 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+  Tailwind v4's Preflight sets `button { cursor: default }` to match the spec.
+  Restore the pointer for enabled buttons; disabled buttons keep not-allowed.
+*/
+button:not(:disabled),
+[role='button']:not(:disabled) {
+  cursor: pointer;
 }

@@ -26,8 +26,8 @@ export function ReviewLine({ line }: ReviewLineProps) {
         alt={name}
         className="h-9 w-9 shrink-0"
       />
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-text">
+      <div className="min-w-0 max-w-[150px] flex-1">
+        <p className="text-sm font-semibold leading-snug text-text">
           {product.title}
           {variant && (
             <span className="font-normal text-text-muted"> · {variant.label}</span>
@@ -41,6 +41,7 @@ export function ReviewLine({ line }: ReviewLineProps) {
         min={required ? quantity : 0}
         disabled={required}
         size="sm"
+        variant="review"
         aria-label={`${name} quantity`}
       />
 

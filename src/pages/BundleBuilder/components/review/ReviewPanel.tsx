@@ -14,6 +14,9 @@ export function ReviewPanel() {
 
   return (
     <aside className="rounded-panel bg-panel p-5">
+      <p className="mb-3 text-xs font-normal uppercase leading-none tracking-[0.1333em] text-text-faint">
+        Review
+      </p>
       <h2 className="text-[1.375rem] font-extrabold text-text">
         Your security system
       </h2>

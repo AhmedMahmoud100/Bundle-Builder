@@ -7,7 +7,18 @@ interface QuantityStepperProps {
   max?: number
   disabled?: boolean
   size?: 'sm' | 'md'
+  /** Context drives the disabled look (different per design). */
+  variant?: 'step' | 'review'
   'aria-label'?: string
+}
+
+/** Disabled-button styling per context. */
+const DISABLED_STYLE: Record<NonNullable<QuantityStepperProps['variant']>, string> = {
+  // Step: 2px border #E6EBF0, no background.
+  step: 'disabled:border-2 disabled:border-border-disabled disabled:bg-transparent disabled:hover:bg-transparent',
+  // Review: 1px border #CED6DE, #F1F1F2 fill.
+  review:
+    'disabled:border-border-panel disabled:bg-control-disabled disabled:hover:bg-control-disabled',
 }
 
 /**
@@ -21,24 +32,23 @@ export function QuantityStepper({
   max = 99,
   disabled,
   size = 'md',
+  variant = 'step',
   'aria-label': ariaLabel,
 }: QuantityStepperProps) {
   const atMin = value <= min
   const atMax = value >= max
 
+  // Each button is its own square (no shared container background).
   const btn = cn(
-    'flex items-center justify-center rounded-md text-text transition-colors',
-    'hover:bg-surface-muted disabled:cursor-not-allowed disabled:text-text-faint disabled:hover:bg-transparent',
-    size === 'sm' ? 'h-6 w-6 text-base' : 'h-8 w-8 text-lg',
+    'flex items-center justify-center rounded border border-border bg-control text-text transition-colors',
+    'hover:bg-surface-muted disabled:cursor-not-allowed disabled:text-text-faint',
+    DISABLED_STYLE[variant],
+    size === 'sm' ? 'h-5 w-5 text-sm' : 'h-8 w-8 text-lg',
   )
 
   return (
     <div
-      className={cn(
-        'inline-flex items-center gap-1 rounded-control border border-border bg-bg',
-        size === 'sm' ? 'px-1 py-0.5' : 'px-1.5 py-1',
-        disabled && 'opacity-50',
-      )}
+      className="inline-flex items-center gap-2"
       role="group"
       aria-label={ariaLabel}
     >
@@ -53,7 +63,7 @@ export function QuantityStepper({
       </button>
       <span
         className={cn(
-          'min-w-5 text-center font-semibold tabular-nums text-text',
+          'min-w-4 text-center font-semibold tabular-nums text-text',
           size === 'sm' ? 'text-sm' : 'text-base',
         )}
         aria-live="polite"
