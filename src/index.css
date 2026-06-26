@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens — single source of truth for colors, radii, fonts.
+  Tailwind v4 `@theme` exposes each token both as a utility class
+  (e.g. `bg-primary`, `text-muted`, `rounded-card`) AND as a CSS variable
+  (e.g. `var(--color-primary)`). No hardcoded hex anywhere else.
+
+  Values are first-pass approximations from the screenshots and are meant
+  to be tuned together with the user.
+*/
+@theme {
+  /* Brand / accent */
+  --color-primary: #4e2fd2;
+  --color-primary-hover: #4327b3; /* darkened primary for hover */
+  --color-primary-fg: #ffffff; /* white on any primary surface (button/badge/icon) */
+  --color-primary-soft: #edf4ff; /* soft tint for hovers / guarantee box */
+
+  /* Surfaces */
+  --color-bg: #ffffff; /* page, cards, collapsed steps, steppers */
+  --color-panel: #edf4ff; /* review panel + expanded accordion step */
+  --color-surface-muted: #f7f7fa; /* hover fills, image placeholders */
+
+  /* Borders */
+  --color-border: #e6e6ec;
+  --color-border-strong: #d6d6df;
+
+  /* Text — general, reusable greys */
+  --color-text: #0b0d10;
+  --color-text-muted: #1f1f1fbf; /* #1F1F1F @ 75% alpha */
+  --color-text-faint: #484848;
+  --color-text-soft: #575757;
+  --color-text-slate: #6f7882;
+  --color-text-mute2: #a8b2bd; /* category subheadings */
+
+  /* Semantic accents — general */
+  --color-sale: #d8392b; /* red sale / strike-through accent */
+  --color-success: #0aa288; /* FREE / savings positive */
+
+  /* Radii */
+  --radius-card: 0.875rem; /* 14px product card */
+  --radius-panel: 1rem; /* 16px review panel */
+  --radius-control: 0.5rem; /* steppers, chips */
+  --radius-pill: 9999px;
+
+  /* Fonts — Manrope as a free stand-in for Gilroy (swap real Gilroy later) */
+  --font-sans:
+    'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/*
+  Global responsive type scale. Everything is sized in rem, so changing the
+  root font-size here scales the whole UI proportionally per breakpoint.
+*/
+html {
+  font-size: 16px; /* desktop ≥1024px */
+}
+@media (max-width: 1024px) {
+  html {
+    font-size: 14px; /* tablet */
+  }
+}
+@media (max-width: 640px) {
+  html {
+    font-size: 13px; /* mobile */
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
