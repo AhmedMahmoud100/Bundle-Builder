@@ -1,5 +1,5 @@
 import { Button } from '../../../../components/Button/Button'
-import { Icon } from '../../../../components/Icon/Icon'
+import { ShippingIcon } from '../../../../assets/icons/ShippingIcon'
 import { Price } from '../../../../components/Price/Price'
 import { useSystemBuilder } from '../../../../hooks/useSystemBuilder'
 import { formatPrice } from '../../../../lib/pricing'
@@ -19,8 +19,8 @@ export function SummaryFooter() {
       <div className="divide-y divide-border border-t border-border">
         {extras.map((extra) => (
           <div key={extra.id} className="flex items-center gap-3 py-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control bg-bg text-primary">
-              <Icon name="truck" className="h-5 w-5" />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control bg-bg">
+              <ShippingIcon className="h-6 w-6" />
             </span>
             <span className="flex-1 text-sm font-semibold text-text">
               {extra.label}
@@ -63,7 +63,7 @@ export function SummaryFooter() {
 
       {/* Savings callout */}
       {totals.savings > 0 && (
-        <p className="text-center text-sm font-semibold text-success">
+        <p className="text-center text-xs font-semibold text-success">
           Congrats! You're saving {formatPrice(totals.savings)} on your security
           bundle!
         </p>

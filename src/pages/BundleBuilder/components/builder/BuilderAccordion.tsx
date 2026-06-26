@@ -1,5 +1,4 @@
 import { AccordionItem } from '../../../../components/Accordion/Accordion'
-import type { IconName } from '../../../../components/Icon/Icon'
 import { useSystemBuilder } from '../../../../hooks/useSystemBuilder'
 import type { Product, StepId } from '../../../../lib/types'
 import { NextStepButton } from './NextStepButton'
@@ -40,7 +39,7 @@ export function BuilderAccordion() {
                 index={i + 1}
                 total={total}
                 title={step.title}
-                icon={step.icon as IconName}
+                icon={step.icon}
                 open={open}
                 selectedCount={selectedCount(step.id)}
               />
@@ -68,8 +67,7 @@ export function BuilderAccordion() {
               </div>
             ) : (
               <p className="rounded-control bg-surface-muted px-4 py-6 text-center text-sm text-text-muted">
-                Your selections for this step are shown in “Your security
-                system” on the right.
+                There is no available data currently.
               </p>
             )}
 

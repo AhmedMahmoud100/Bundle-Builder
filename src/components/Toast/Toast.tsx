@@ -1,4 +1,4 @@
-import { Icon } from '../Icon/Icon'
+import { CheckIcon } from '../../assets/icons/CheckIcon'
 import { cn } from '../../lib/cn'
 
 interface ToastProps {
@@ -23,7 +23,7 @@ export function Toast({ show, message }: ToastProps) {
       )}
     >
       <div className="flex items-center gap-2 rounded-control bg-success px-4 py-3 text-sm font-semibold text-primary-fg shadow-lg">
-        <Icon name="check" className="h-4 w-4" />
+        <CheckIcon className="h-4 w-4" />
         {message}
       </div>
     </div>

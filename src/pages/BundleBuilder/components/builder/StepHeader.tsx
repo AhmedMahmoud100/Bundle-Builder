@@ -1,13 +1,24 @@
-import { Icon } from '../../../../components/Icon/Icon'
-import type { IconName } from '../../../../components/Icon/Icon'
+import type { ComponentType } from 'react'
 import { CaretIcon } from '../../../../assets/icons/CaretIcon'
+import { StepCamerasIcon } from '../../../../assets/icons/StepCamerasIcon'
+import { StepPlanIcon } from '../../../../assets/icons/StepPlanIcon'
+import { StepSensorsIcon } from '../../../../assets/icons/StepSensorsIcon'
+import { StepProtectionIcon } from '../../../../assets/icons/StepProtectionIcon'
 import { cn } from '../../../../lib/cn'
+
+/** Maps a step's catalog `icon` key to its dedicated icon component. */
+const STEP_ICONS: Record<string, ComponentType<{ className?: string }>> = {
+  camera: StepCamerasIcon,
+  plan: StepPlanIcon,
+  sensor: StepSensorsIcon,
+  shield: StepProtectionIcon,
+}
 
 interface StepHeaderProps {
   index: number
   total: number
   title: string
-  icon: IconName
+  icon: string
   open: boolean
   selectedCount: number
 }
@@ -25,6 +36,7 @@ export function StepHeader({
   open,
   selectedCount,
 }: StepHeaderProps) {
+  const StepIcon = STEP_ICONS[icon]
   return (
     <span className="flex w-full flex-col">
       {/* Eyebrow */}
@@ -42,7 +54,7 @@ export function StepHeader({
 
       {/* Title row: icon + title (left), selected + caret (right) */}
       <span className="flex w-full items-center gap-3">
-        <Icon name={icon} className="h-6 w-6 shrink-0 text-text" />
+        {StepIcon && <StepIcon className="h-6 w-6 shrink-0 text-text-slate" />}
         <span className="text-[1.375rem] font-semibold text-text">{title}</span>
         <span className="ml-auto flex items-center gap-2 text-sm font-semibold text-primary">
           {open && selectedCount > 0 && <span>{selectedCount} selected</span>}
