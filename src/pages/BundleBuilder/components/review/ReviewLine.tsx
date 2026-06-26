@@ -20,14 +20,15 @@ export function ReviewLine({ line }: ReviewLineProps) {
   const required = !!product.required
 
   return (
-    <div className="flex items-center gap-3 py-2">
-      <ProductImage
-        src={product.image}
-        alt={name}
-        className="h-9 w-9 shrink-0"
-      />
-      <div className="min-w-0 max-w-[150px] flex-1">
-        <p className="text-sm font-semibold leading-snug text-text">
+    <div className="flex items-center justify-between gap-3 py-2">
+      {/* Column A: image + title — takes all available width */}
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        <ProductImage
+          src={product.image}
+          alt={name}
+          className="h-9 w-9 shrink-0"
+        />
+        <p className="min-w-0 text-sm font-semibold leading-snug text-text">
           {product.title}
           {variant && (
             <span className="font-normal text-text-muted"> · {variant.label}</span>
@@ -35,26 +36,28 @@ export function ReviewLine({ line }: ReviewLineProps) {
         </p>
       </div>
 
-      <QuantityStepper
-        value={quantity}
-        onChange={(q) => setQuantity(product.id, variant?.id, q)}
-        min={required ? quantity : 0}
-        disabled={required}
-        size="sm"
-        variant="review"
-        aria-label={`${name} quantity`}
-      />
-
-      <div className="w-20 text-right">
-        <Price
-          price={product.price}
-          compareAt={product.compareAt}
-          unit={product.unit}
+      {/* Column B: counter + price */}
+      <div className="flex shrink-0 items-center gap-2">
+        <QuantityStepper
+          value={quantity}
+          onChange={(q) => setQuantity(product.id, variant?.id, q)}
+          min={required ? quantity : 0}
+          disabled={required}
           size="sm"
-          layout="stacked"
-          context="review"
-          activeWeight="semibold"
+          variant="review"
+          aria-label={`${name} quantity`}
         />
+        <div className="w-20 text-right">
+          <Price
+            price={product.price}
+            compareAt={product.compareAt}
+            unit={product.unit}
+            size="sm"
+            layout="stacked"
+            context="review"
+            activeWeight="semibold"
+          />
+        </div>
       </div>
     </div>
   )

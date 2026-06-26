@@ -69,17 +69,18 @@ export function SummaryFooter() {
         </p>
       )}
 
-      <Button fullWidth size="lg">
-        Checkout
-      </Button>
-
-      <button
-        type="button"
-        onClick={saveForLater}
-        className="text-center text-sm font-normal text-text-faint underline underline-offset-2"
-      >
-        Save my system for later
-      </button>
+      <div className='flex items-center flex-col gap-1'>
+        <Button fullWidth size="lg">
+          Checkout
+        </Button>
+        <button
+          type="button"
+          onClick={saveForLater}
+          className="text-center text-sm font-normal text-text-faint underline underline-offset-2"
+        >
+          Save my system for later
+        </button>
+      </div>
     </div>
   )
 }

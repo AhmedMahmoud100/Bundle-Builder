@@ -22,7 +22,7 @@ export function BundleBuilderPage() {
         </h1>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start">
         <main>
           <BuilderAccordion />
         </main>
