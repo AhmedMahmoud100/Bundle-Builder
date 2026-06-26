@@ -112,7 +112,7 @@ export function SystemBuilderProvider({ children }: { children: ReactNode }) {
     writeStorage(STORAGE_KEY, cart)
     setJustSaved(true)
     if (savedTimer.current) clearTimeout(savedTimer.current)
-    savedTimer.current = setTimeout(() => setJustSaved(false), 2500)
+    savedTimer.current = setTimeout(() => setJustSaved(false), 2000)
   }, [cart])
 
   const value = useMemo<SystemBuilderApi>(

@@ -1,3 +1,5 @@
+import { Toast } from '../../components/Toast/Toast'
+import { useSystemBuilder } from '../../hooks/useSystemBuilder'
 import { BuilderAccordion } from './components/builder/BuilderAccordion'
 import { ReviewPanel } from './components/review/ReviewPanel'
 
@@ -10,6 +12,8 @@ import { ReviewPanel } from './components/review/ReviewPanel'
  * they stack into a single column (review panel drops below the builder).
  */
 export function BundleBuilderPage() {
+  const { justSaved } = useSystemBuilder()
+
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-6 sm:px-6 lg:py-10">
       <header className="mb-6">
@@ -26,6 +30,8 @@ export function BundleBuilderPage() {
           <ReviewPanel />
         </div>
       </div>
+
+      <Toast show={justSaved} message="Your system has been saved" />
     </div>
   )
 }

@@ -10,7 +10,7 @@ import { formatPrice } from '../../../../lib/pricing'
  * and "Save my system for later".
  */
 export function SummaryFooter() {
-  const { catalog, extras, totals, saveForLater, justSaved } = useSystemBuilder()
+  const { catalog, extras, totals, saveForLater } = useSystemBuilder()
   const { financingMonthly, sealImage } = catalog.summary
 
   const handleCheckout = () => {
@@ -86,7 +86,7 @@ export function SummaryFooter() {
         onClick={saveForLater}
         className="text-center text-sm font-normal text-text-faint underline underline-offset-2"
       >
-        {justSaved ? 'Saved ✓' : 'Save my system for later'}
+        Save my system for later
       </button>
     </div>
   )
