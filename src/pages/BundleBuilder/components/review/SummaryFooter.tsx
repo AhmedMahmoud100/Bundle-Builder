@@ -13,14 +13,6 @@ export function SummaryFooter() {
   const { catalog, extras, totals, saveForLater } = useSystemBuilder()
   const { financingMonthly, sealImage } = catalog.summary
 
-  const handleCheckout = () => {
-    // Placeholder — no destination in this prototype.
-    alert(
-      `Order confirmed!\n\nTotal: ${formatPrice(totals.total)}` +
-        (totals.monthly > 0 ? `\nPlan: ${formatPrice(totals.monthly)}/mo` : ''),
-    )
-  }
-
   return (
     <div className="flex flex-col gap-4">
       {/* Shipping & extra rows */}
@@ -77,7 +69,7 @@ export function SummaryFooter() {
         </p>
       )}
 
-      <Button fullWidth size="lg" onClick={handleCheckout}>
+      <Button fullWidth size="lg">
         Checkout
       </Button>
 
