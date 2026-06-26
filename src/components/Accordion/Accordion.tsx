@@ -41,7 +41,21 @@ export function AccordionItem({
       >
         {header}
       </button>
-      {open && <div className="px-5 pb-5">{children}</div>}
+      {/*
+        Animated collapse via the grid-rows 0fr→1fr trick: the row track
+        animates between 0 and content height while the inner wrapper clips
+        overflow. Content stays mounted so the height can transition.
+      */}
+      <div
+        className={cn(
+          'grid transition-[grid-template-rows] duration-300 ease-out',
+          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="px-5 pb-5">{children}</div>
+        </div>
+      </div>
     </div>
   )
 }
