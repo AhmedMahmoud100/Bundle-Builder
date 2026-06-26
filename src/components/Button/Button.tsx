@@ -28,11 +28,13 @@ export function Button({
   variant = 'primary',
   size = 'md',
   fullWidth,
+  type = 'button',
   className,
   ...rest
 }: ButtonProps) {
   return (
     <button
+      type={type}
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-control font-semibold transition-colors',
         'focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none',

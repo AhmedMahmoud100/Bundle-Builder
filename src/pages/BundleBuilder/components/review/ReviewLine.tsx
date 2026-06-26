@@ -53,6 +53,7 @@ export function ReviewLine({ line }: ReviewLineProps) {
           size="sm"
           layout="stacked"
           context="review"
+          activeWeight="semibold"
         />
       </div>
     </div>

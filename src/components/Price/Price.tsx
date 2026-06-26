@@ -17,6 +17,8 @@ interface PriceProps {
   layout?: 'inline' | 'stacked'
   /** Which color set to use for active/compare prices. */
   context?: PriceContext
+  /** Font weight of the active price. */
+  activeWeight?: 'normal' | 'semibold'
   className?: string
 }
 
@@ -41,6 +43,7 @@ export function Price({
   size = 'md',
   layout = 'inline',
   context = 'plain',
+  activeWeight = 'normal',
   className,
 }: PriceProps) {
   const suffix = unit === 'mo' ? '/mo' : ''
@@ -65,7 +68,7 @@ export function Price({
   const activeEl = (
     <span
       className={cn(
-        'font-normal',
+        activeWeight === 'semibold' ? 'font-semibold' : 'font-normal',
         isFree ? 'text-primary' : colors.active,
         activeSize,
       )}
