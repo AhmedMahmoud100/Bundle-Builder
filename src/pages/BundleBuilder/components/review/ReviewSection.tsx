@@ -16,7 +16,7 @@ const TITLES: Record<Category, string> = {
 /** A category group: subheading + its review lines. */
 export function ReviewSection({ category, lines }: ReviewSectionProps) {
   return (
-    <section className="border-b border-border-panel pb-4">
+    <section className="border-b border-border-panel pb-2">
       <h3 className="mb-1 text-xs font-normal uppercase tracking-wide text-text-mute2">
         {TITLES[category]}
       </h3>

@@ -14,11 +14,11 @@ export function SummaryFooter() {
   const { financingMonthly, sealImage } = catalog.summary
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {/* Shipping & extra rows */}
-      <div className="divide-y divide-border border-t border-border">
+      <div>
         {extras.map((extra) => (
-          <div key={extra.id} className="flex items-center gap-3 py-3">
+          <div key={extra.id} className="flex items-center gap-3">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control bg-bg">
               <ShippingIcon className="h-6 w-6" />
             </span>
@@ -38,7 +38,7 @@ export function SummaryFooter() {
       </div>
 
       {/* Seal + financing/total */}
-      <div className="flex items-center justify-between gap-3 pt-1">
+      <div className="flex items-center justify-between gap-3 py-2">
         <img
           src={sealImage}
           alt="100% Wyze satisfaction guarantee"
