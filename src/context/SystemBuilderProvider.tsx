@@ -12,7 +12,7 @@ import { readStorage, writeStorage } from '../hooks/useLocalStorage'
 import { SystemBuilderContext } from './systemBuilderContext'
 import type { SystemBuilderApi } from './systemBuilderContext'
 
-const STORAGE_KEY = 'wyze-bundle-builder/v1'
+const STORAGE_KEY = 'wyze-bundle-builder/v2'
 
 /** Hydrate from localStorage if a saved system exists, else use the seed. */
 function initialCart(): CartState {
