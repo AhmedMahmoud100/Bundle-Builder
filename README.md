@@ -1,32 +1,60 @@
-# React + TypeScript + Vite
+# Bundle Builder — Wyze-style "Build Your Security System"
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A single-page, two-column experience for assembling a home-security bundle:
 
-Currently, two official plugins are available:
+- **Left — the builder:** a 4-step accordion (Cameras → Plan → Sensors → Extra
+  protection) with product cards (badge, image, variants, quantity stepper,
+  pricing).
+- **Right — the review panel ("Your security system"):** a live summary grouped
+  by category with per-line steppers, shipping, guarantee seal, financing line,
+  total, savings callout, Checkout, and "Save my system for later".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Built with **Vite + React + TypeScript** and **Tailwind CSS v4**.
 
-## React Compiler
+**Live demo:** https://bundle-builder-wine.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## Run it locally
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Requirements: **Node 18+** (developed on Node 22) and npm.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+# 1. install dependencies
+npm install
+
+# 2. start the dev server (http://localhost:5173)
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Then open the URL Vite prints (default **http://localhost:5173**).
+
+A clean clone + `npm install` + `npm run dev` (or `npm run build`) is all that's
+needed — there is no backend and no environment configuration.
+
+---
+
+## Notes on the implementation vs. the Figma
+
+A few places intentionally differ from the Figma, with reasons:
+
+- **Font.** The design uses **Gilroy**, which is a paid font and isn't available
+  for free from Google Fonts, so it couldn't be used legitimately. I substituted
+  **Manrope** (the closest free match). Real Gilroy can be dropped in later via
+  `@font-face` with no other changes.
+- **Empty steps.** Only **Step 1 (Cameras)** has its content designed in the
+  Figma; steps 2–4 (Plan, Sensors, Extra protection) have no card content in the
+  provided design, so I left them as empty placeholders rather than inventing UI.
+- **Responsive type sizes.** The Figma reuses the **same (large) font sizes on
+  mobile**, and the initial title sizes are already quite big — at phone widths
+  that overflows/looks oversized. I used **rem-based sizing and scale the root
+  font-size down on small screens**, so the whole UI shrinks proportionally and
+  stays readable. This is a deliberate deviation to keep mobile usable.
+- **Minor design inconsistencies kept as-is.** The design has a few small
+  inconsistencies (e.g. some text that reads like it should be bold/highlighted
+  but isn't). I generally followed the design as given rather than "fixing" it.
+- **Not pixel-perfect — and that's intentional.** I matched the design closely
+  but didn't chase exact pixel parity. Colors and sizes were eyeballed from
+  screenshots (no exported Figma tokens), so some values are approximations. As
+  this isn't a paid engagement, I prioritized a faithful, working result over
+  spending excessive time on pixel-perfection.
