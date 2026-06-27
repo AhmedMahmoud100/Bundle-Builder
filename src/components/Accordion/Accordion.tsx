@@ -28,7 +28,7 @@ export function AccordionItem({
         // Expanded: tinted rounded panel. Collapsed: plain white with a
         // hairline below the section (separates it from the next step).
         open
-          ? 'rounded-panel bg-panel'
+          ? 'rounded-none bg-panel sm:rounded-panel'
           : 'border-b-[0.5px] border-border-step bg-bg',
         className,
       )}
@@ -37,7 +37,7 @@ export function AccordionItem({
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="block w-full px-5 py-4 text-left"
+        className="block w-full px-3 py-4 text-left sm:px-5"
       >
         {header}
       </button>
@@ -53,7 +53,7 @@ export function AccordionItem({
         )}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5">{children}</div>
+          <div className="px-3 pb-5 sm:px-5">{children}</div>
         </div>
       </div>
     </div>

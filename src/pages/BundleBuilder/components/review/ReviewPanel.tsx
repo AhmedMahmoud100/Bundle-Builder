@@ -15,7 +15,7 @@ export function ReviewPanel() {
   const isEmpty = groups.length === 0
 
   return (
-    <aside className="flex min-h-96 flex-col rounded-panel bg-panel p-5 lg:min-w-[390px]">
+    <aside className="flex min-h-96 flex-col rounded-none bg-panel p-3 sm:rounded-panel sm:p-5 lg:min-w-[390px]">
       <p className="mb-3 text-xs font-normal uppercase leading-none tracking-[0.1333em] text-text-faint">
         Review
       </p>

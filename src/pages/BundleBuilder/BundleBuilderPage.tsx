@@ -15,9 +15,9 @@ export function BundleBuilderPage() {
   const { justSaved } = useSystemBuilder()
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-6 sm:px-6 lg:py-10">
+    <div className="mx-auto max-w-[1200px]  py-6 sm:px-6 lg:py-10">
       <header className="mb-6">
-        <h1 className="text-2xl font-extrabold text-text lg:hidden">
+        <h1 className="text-2xl font-extrabold text-text lg:hidden text-center">
           Let's get started!
         </h1>
       </header>

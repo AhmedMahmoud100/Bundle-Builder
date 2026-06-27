@@ -50,7 +50,7 @@ export function StepHeader({
       </span>
 
       {/* Divider under the eyebrow — breaks out of the header's px-5 padding */}
-      <span className="mt-1.5 mb-3 -mx-5 block border-t-[0.5px] border-border-step" />
+      <span className="mt-1.5 mb-3 -mx-3 block border-t-[0.5px] border-border-step sm:-mx-5" />
 
       {/* Title row: icon + title (left), selected + caret (right) */}
       <span className="flex w-full items-center gap-3">
